@@ -26,9 +26,9 @@
 
 回归算法思路如下：
 ![](images/7.png)
- Python 实现拟合以及训练过程详解见实验室：[optional lab](C1_W1_Lab03_Model_Representation_Soln.ipynb)
+ Python 实现拟合以及训练过程详解见实验室：[optional lab](work/C1_W1_Lab03_Course_Preview_Soln.ipynb)
 
-```
+```markdown
 注:
 1. 一般采用线性回归是因为线性函数简单且易使用
 ```
@@ -60,4 +60,4 @@
 
 
 
-I just like the feeling that I'm better than ever before.
+> I just like the feeling that I'm better than ever before.
