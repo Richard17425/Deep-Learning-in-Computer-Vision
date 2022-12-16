@@ -24,6 +24,15 @@
   - (x,y):单个训练示例(single training example)
   - (x<sup>(i)</sup> ,y<sup>(i)</sup>):第i个训练示例(i<sup>st</sup> training example)
 
+回归算法思路如下：
+![](images/7.png)
+ Python 实现拟合以及训练过程详解见实验室：[optional lab](C1_W1_Lab03_Model_Representation_Soln.ipynb)
+
+```
+注:
+1. 一般采用线性回归是因为线性函数简单且易使用
+```
+
 
 - **<font size=4>1.2分类 Classification</font>**
 ![](images/2.png)
