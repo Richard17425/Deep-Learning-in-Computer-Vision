@@ -17,6 +17,7 @@
 几种监督学习算法：
 
 **<font size=4>1.1 回归 Regression</font>**
+
 从无限多的可能输出数字中预测数字
 
   - x:输入变量("input" variable/feature)
@@ -36,10 +37,12 @@
 
 
 **<font size=4>1.2 分类 Classification</font>**
+
 ![](images/2.png)
 只有有限情况的输出类型，但可有多个输入.
 
 **<font size=4>1.3 回归与分类的区别:</font>**
+
 主要区别在于可能输出数据种类的多少，回归输出数据有无限种，分类只有有限种。
 
 ![](images/3.png)
@@ -53,10 +56,13 @@
 
 几种无监督学习算法：
 ![](images/5.png)
+
 **<font size=4>2.1聚类 Clustering</font>**
 
   获取没有标签的数据并尝试将它们自动分组到集群中。
+
 **<font size=4>2.2异常检测 Anomaly detection</font>**
+
 **<font size=4>2.3降维 Dimensionality reduction</font>**
 
 
