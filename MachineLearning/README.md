@@ -1,6 +1,8 @@
 # **机器学习笔记**
 **Notes during my learning ML**
 
+![](images/0.png)
+
 机器学习的两种主要类型：
 - 监督学习(Supervised learning)
 使用最多的一种机器学习类型，有最快速的进步和创新。
@@ -20,11 +22,19 @@
 
 从无限多的可能输出数字中预测数字
 
-  - x:输入变量("input" variable/feature)
-  - y:输入变量("output/target" variable)
-  - m:训练样本的总数(number of training example)
-  - (x,y):单个训练示例(single training example)
-  - (x<sup>(i)</sup> ,y<sup>(i)</sup>):第i个训练示例(i<sup>st</sup> training example)
+  - x: 输入变量("input" variable/feature)
+  - y: 输入变量("output/target" variable)
+  - m: 训练样本的总数(number of training example)
+  - (x,y): 单个训练示例(single training example)
+  - (x<sup>(i)</sup> ,y<sup>(i)</sup>): 第i个训练示例(i<sup>st</sup> training example)
+  - f<sub>w,b</sub>(x)=wx+b: 线性回归模型(model)
+  - w,b: 模型的参数(系数/权重)(parameters)，在训练的时候改变以改进模型
+  - $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 \tag{1}$$
+成本函数 Cost Function
+采用误差(预测的y值与目标y<sup>(i)</sup>值之差)的平方之和除以两倍样本数
+
+
+实验室中的代码实现见：[Lab04](work/C1_W1_Lab04_Cost_function_Soln.ipynb)
 
 回归算法思路如下：
 ![](images/7.png)
@@ -35,6 +45,17 @@
 1. 一般采用线性回归是因为线性函数简单且易使用
 ```
 
+### **1.1.3 梯度下降(Gradient Descent)算法**
+
+![](images/8.png)
+
+$\alpha$:学习率learning rate，控制学习时w和b的步长。
+
+### 1.1.4 运用平方成本函数梯度下降的**线性回归模型** 
+use squared error cost function for the linear regression model with gradient deecent
+
+实验室见：[lab05](work/C1_W1_Lab05_Gradient_Descent_Soln.ipynb)
+![](images/9.png)
 
 **<font size=4>1.2 分类 Classification</font>**
 
@@ -68,3 +89,8 @@
 
 `12.17` 
 > I just like the feeling that I'm better than ever before.
+
+关于github推送，如果一次失败了的话，可以尝试解决办法有：
+1. 关掉工作区重来
+2. 打开代理
+3. 在最上面`源代码管理储存库`中选择`推送`
