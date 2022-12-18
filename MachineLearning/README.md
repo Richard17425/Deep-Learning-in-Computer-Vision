@@ -1,15 +1,17 @@
 # **机器学习笔记**
-**Notes during my learning ML**
+**<font size=5>Notes during my learning ML</font>**
+
+学习视频我看的是b站上的[2022吴恩达机器学习Deeplearning.ai课程](https://www.bilibili.com/video/BV1Pa411X76s/?spm_id_from=333.337.search-card.all.click)
 
 ![](images/0.png)
 
 机器学习的两种主要类型：
-- 监督学习(Supervised learning)
+- **监督学习**(Supervised learning)
 使用最多的一种机器学习类型，有最快速的进步和创新。
-- 无监督学习(Unsupervised learning) 
+- **无监督学习**(Unsupervised learning) 
  
 其他的机器学习类型：
-- 强化学习(Reinforcement learning)
+- **强化学习**(Reinforcement learning)
 ***
 ## **1. 监督学习(Supervised learning)**
 
@@ -29,7 +31,7 @@
   - (x<sup>(i)</sup> ,y<sup>(i)</sup>): 第i个训练示例(i<sup>st</sup> training example)
   - f<sub>w,b</sub>(x)=wx+b: 线性回归模型(model)
   - w,b: 模型的参数(系数/权重)(parameters)，在训练的时候改变以改进模型
-  - $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 \tag{1}$$
+  - $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2 $$
 成本函数 Cost Function
 采用误差(预测的y值与目标y<sup>(i)</sup>值之差)的平方之和除以两倍样本数
 
@@ -64,7 +66,7 @@ w = np.array([1.0,2.5,-3.3])
 b = 4
 x = np.array([10,20,30])
 ```
-Python 中的数组同样从0开始，使用w数组中的第一个数的语法是`w[0]`
+Python 中的数组同样从0开始，使用w数组中的第一个数的语法是 `w[0]`
 循环写法：
 ```python
 f = 0
@@ -84,7 +86,7 @@ f = np.dot(w,x) + b
 
 ![](images/12.png)
 
-具体的对比验证在week2的实验室中,的3.4.7可以找到[lab01 week2](work2/C1_W2_Lab01_Python_Numpy_Vectorization_Soln.ipynb)
+具体的对比验证在week2的实验室中,的3.4.7可以找到：[lab1 week2](work2/C1_W2_Lab01_Python_Numpy_Vectorization_Soln.ipynb)
 
 **多元回归的梯度下降**
 
@@ -93,7 +95,13 @@ f = np.dot(w,x) + b
 
 除了梯度下降法以外，还有一种实现线性回归的方法是**正规方程法(Normal equation)**，不用迭代可以直接求出w和b，但是其只能用于线性回归，且如果训练集比较大的话，计算过程也会很慢。
 
-多元回归模型的定义见：[lab02 week2](work2/C1_W2_Lab02_Multiple_Variable_Soln.ipynb)
+多元回归模型的定义见：[lab2 week2](work2/C1_W2_Lab02_Multiple_Variable_Soln.ipynb)
+
+
+### 1.1.6 特征缩放(Feature scaling)
+当有不同的特征数据，且他们的取值范围非常不同时，可能会导致梯度下降运行缓慢。此时重新缩放不同的特征（对数据做类似于归一化处理），可以使数据分布较为均匀，让梯度下降的效率更高。
+
+![](images/15.png)
 
 ### **<font size=4>1.2 分类 Classification</font>**
 
