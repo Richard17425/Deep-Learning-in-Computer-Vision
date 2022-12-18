@@ -18,7 +18,7 @@
 给算法一个数据集以及对应的正确答案，学习算法的任务是产生更多这样的正确答案。
 几种监督学习算法：
 
-<font size=4>**1.1 回归 Regression**</font>
+### <font size=4>**1.1 回归 Regression**</font>
 
 从无限多的可能输出数字中预测数字
 
@@ -38,7 +38,7 @@
 
 回归算法思路如下：
 ![](images/7.png)
- Python 实现拟合以及训练过程详解见实验室：[optional lab](work/C1_W1_Lab03_Course_Preview_Soln.ipynb)
+ Python 实现拟合以及训练过程详解见实验室：[lab03](work/C1_W1_Lab03_Course_Preview_Soln.ipynb)
 
 ```markdown
 注:
@@ -57,12 +57,50 @@ use squared error cost function for the linear regression model with gradient de
 实验室见：[lab05](work/C1_W1_Lab05_Gradient_Descent_Soln.ipynb)
 ![](images/9.png)
 
-**<font size=4>1.2 分类 Classification</font>**
+### 1.1.5 多元线性回归 Multiple linear regression
+在Python中定义数组：
+```python
+w = np.array([1.0,2.5,-3.3])
+b = 4
+x = np.array([10,20,30])
+```
+Python 中的数组同样从0开始，使用w数组中的第一个数的语法是`w[0]`
+循环写法：
+```python
+f = 0
+for j in range(0,n):    #range(0,n)是从0到n-1而不是到n，这里也可以用range(n)是一样的意思
+  f = f + w[j] * x[j]
+f = f + b
+```
+![](images/10.png)
+
+Python中矢量化实现：
+```python
+f = np.dot(w,x) + b
+```
+![](images/11.png)
+
+这就相当于是数学中的点乘运算，且采用numpy中的dot运算可以大幅提高运算效率，两种代码运行原理如下所示：
+
+![](images/12.png)
+
+具体的对比验证在week2的实验室中,的3.4.7可以找到[lab01 week2](work2/C1_W2_Lab01_Python_Numpy_Vectorization_Soln.ipynb)
+
+**多元回归的梯度下降**
+
+![](images/13.png)
+![](images/14.png)
+
+除了梯度下降法以外，还有一种实现线性回归的方法是**正规方程法(Normal equation)**，不用迭代可以直接求出w和b，但是其只能用于线性回归，且如果训练集比较大的话，计算过程也会很慢。
+
+多元回归模型的定义见：[lab02 week2](work2/C1_W2_Lab02_Multiple_Variable_Soln.ipynb)
+
+### **<font size=4>1.2 分类 Classification</font>**
 
 ![](images/2.png)
 只有有限情况的输出类型，但可有多个输入.
 
-**<font size=4>1.3 回归与分类的区别:</font>**
+### **<font size=4>1.3 回归与分类的区别:</font>**
 
 主要区别在于可能输出数据种类的多少，回归输出数据有无限种，分类只有有限种。
 
