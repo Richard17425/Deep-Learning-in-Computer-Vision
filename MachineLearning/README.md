@@ -51,7 +51,12 @@
 
 ![](images/8.png)
 
-$\alpha$:学习率learning rate，控制学习时w和b的步长。
+$\alpha$:学习率learning rate，控制学习时w和b的步长。学习率选择的不同会影响成本函数的收敛与否，直接关系到梯度下降法能否得到有效解，$\alpha$ 过大会导致发散，过小会增加迭代次数，影响学习效率。
+
+学习率的设置:
+![](images/16.png)
+
+实验室见: [lab3 week2](work2/C1_W2_Lab03_Feature_Scaling_and_Learning_Rate_Soln.ipynb)
 
 ### 1.1.4 运用平方成本函数梯度下降的**线性回归模型** 
 use squared error cost function for the linear regression model with gradient deecent
