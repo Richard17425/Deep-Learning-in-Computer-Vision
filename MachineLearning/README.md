@@ -3,6 +3,23 @@
 
 学习视频我看的是b站上的[2022吴恩达机器学习Deeplearning.ai课程](https://www.bilibili.com/video/BV1Pa411X76s/?spm_id_from=333.337.search-card.all.click)
 
+- [**机器学习笔记**](#机器学习笔记)
+  - [**1. 监督学习(Supervised learning)**](#1-监督学习supervised-learning)
+    - [**1.1 回归 Regression**](#11-回归-regression)
+    - [**1.1.3 梯度下降(Gradient Descent)算法**](#113-梯度下降gradient-descent算法)
+    - [1.1.4 运用平方成本函数梯度下降的**线性回归模型**](#114-运用平方成本函数梯度下降的线性回归模型)
+    - [1.1.5 多元线性回归 Multiple linear regression](#115-多元线性回归-multiple-linear-regression)
+    - [1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)](#116-特征缩放feature-scaling与特征工程feature-engineering)
+    - [1.1.7 多项式回归](#117-多项式回归)
+    - [**1.2 分类 Classification**](#12-分类-classification)
+    - [**1.3 回归与分类的区别:**](#13-回归与分类的区别)
+  - [**2.无监督学习(Unsupervised learning)**](#2无监督学习unsupervised-learning)
+    - [**2.1聚类 Clustering**](#21聚类-clustering)
+    - [** 2.2异常检测 Anomaly detection**](#-22异常检测-anomaly-detection)
+    - [**2.3降维 Dimensionality reduction**](#23降维-dimensionality-reduction)
+
+
+
 ![](images/0.png)
 
 机器学习的两种主要类型：
@@ -51,7 +68,7 @@
 
 ![](images/8.png)
 
-$\alpha$:学习率learning rate，控制学习时w和b的步长。学习率选择的不同会影响成本函数的收敛与否，直接关系到梯度下降法能否得到有效解，$\alpha$ 过大会导致发散，过小会增加迭代次数，影响学习效率。
+$\alpha$:学习率learning rate，控制学习时w和b的步长。学习率选择的不同会影响成本函数的收敛与否，直接关系到梯度下降法能否得到有效解,$\alpha$ 过大会导致发散，过小会增加迭代次数，影响学习效率。
 
 学习率的设置:
 ![](images/16.png)
@@ -103,10 +120,19 @@ f = np.dot(w,x) + b
 多元回归模型的定义见：[lab2 week2](work2/C1_W2_Lab02_Multiple_Variable_Soln.ipynb)
 
 
-### 1.1.6 特征缩放(Feature scaling)
-当有不同的特征数据，且他们的取值范围非常不同时，可能会导致梯度下降运行缓慢。此时重新缩放不同的特征（对数据做类似于归一化处理），可以使数据分布较为均匀，让梯度下降的效率更高。
+### 1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)
+**特征缩放：**当有不同的特征数据，且他们的取值范围非常不同时，可能会导致梯度下降运行缓慢。此时重新缩放不同的特征（对数据做类似于归一化处理），可以使数据分布较为均匀，让梯度下降的效率更高。
 
 ![](images/15.png)
+
+**特征工程：**通过你个人对问题的理解以及直觉，对原始的数据进行相关变换得到新的数据，再进行机器学习。
+
+![](images/17.png)
+
+### 1.1.7 多项式回归
+
+Scikit-learn：一个广泛使用的开源机器学习库
+多项式回归在实验室中的实现：[lab4 week2](work2/C1_W2_Lab04_FeatEng_PolyReg_Soln.ipynb)
 
 ### **<font size=4>1.2 分类 Classification</font>**
 
@@ -129,13 +155,13 @@ f = np.dot(w,x) + b
 几种无监督学习算法：
 ![](images/5.png)
 
-**<font size=4>2.1聚类 Clustering</font>**
+### **<font size=4>2.1聚类 Clustering</font>**
 
   获取没有标签的数据并尝试将它们自动分组到集群中。
 
-**<font size=4>2.2异常检测 Anomaly detection</font>**
+### **<font size=4> 2.2异常检测 Anomaly detection</font>**
 
-**<font size=4>2.3降维 Dimensionality reduction</font>**
+### **<font size=4>2.3降维 Dimensionality reduction</font>**
 
 
 `12.17` 
