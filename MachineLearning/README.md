@@ -6,17 +6,17 @@
 - [**机器学习笔记**](#机器学习笔记)
   - [**1. 监督学习(Supervised learning)**](#1-监督学习supervised-learning)
     - [**1.1 回归 Regression**](#11-回归-regression)
-    - [**1.1.3 梯度下降(Gradient Descent)算法**](#113-梯度下降gradient-descent算法)
-    - [1.1.4 运用平方成本函数梯度下降的**线性回归模型**](#114-运用平方成本函数梯度下降的线性回归模型)
-    - [1.1.5 多元线性回归 Multiple linear regression](#115-多元线性回归-multiple-linear-regression)
-    - [1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)](#116-特征缩放feature-scaling与特征工程feature-engineering)
-    - [1.1.7 多项式回归](#117-多项式回归)
+      - [**1.1.3 梯度下降(Gradient Descent)算法**](#113-梯度下降gradient-descent算法)
+      - [1.1.4 运用平方成本函数梯度下降的**线性回归模型**](#114-运用平方成本函数梯度下降的线性回归模型)
+      - [1.1.5 多元线性回归 Multiple linear regression](#115-多元线性回归-multiple-linear-regression)
+      - [1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)](#116-特征缩放feature-scaling与特征工程feature-engineering)
+      - [1.1.7 多项式回归](#117-多项式回归)
     - [**1.2 分类 Classification**](#12-分类-classification)
-    - [**1.3 回归与分类的区别:**](#13-回归与分类的区别)
-  - [**2.无监督学习(Unsupervised learning)**](#2无监督学习unsupervised-learning)
-    - [**2.1聚类 Clustering**](#21聚类-clustering)
-    - [** 2.2异常检测 Anomaly detection**](#-22异常检测-anomaly-detection)
-    - [**2.3降维 Dimensionality reduction**](#23降维-dimensionality-reduction)
+    - [1.3 回归与分类的区别:](#13-回归与分类的区别)
+  - [**2. 无监督学习(Unsupervised learning)**](#2-无监督学习unsupervised-learning)
+    - [**2.1 聚类 Clustering**](#21-聚类-clustering)
+    - [**2.2 异常检测 Anomaly detection**](#22-异常检测-anomaly-detection)
+    - [**2.3 降维 Dimensionality reduction**](#23-降维-dimensionality-reduction)
 
 
 
@@ -64,7 +64,7 @@
 1. 一般采用线性回归是因为线性函数简单且易使用
 ```
 
-### **1.1.3 梯度下降(Gradient Descent)算法**
+#### **1.1.3 梯度下降(Gradient Descent)算法**
 
 ![](images/8.png)
 
@@ -75,13 +75,13 @@ $\alpha$:学习率learning rate，控制学习时w和b的步长。学习率选�
 
 实验室见: [lab3 week2](work2/C1_W2_Lab03_Feature_Scaling_and_Learning_Rate_Soln.ipynb)
 
-### 1.1.4 运用平方成本函数梯度下降的**线性回归模型** 
+#### 1.1.4 运用平方成本函数梯度下降的**线性回归模型** 
 use squared error cost function for the linear regression model with gradient deecent
 
 实验室见：[lab05](work/C1_W1_Lab05_Gradient_Descent_Soln.ipynb)
 ![](images/9.png)
 
-### 1.1.5 多元线性回归 Multiple linear regression
+#### 1.1.5 多元线性回归 Multiple linear regression
 在Python中定义数组：
 ```python
 w = np.array([1.0,2.5,-3.3])
@@ -120,7 +120,7 @@ f = np.dot(w,x) + b
 多元回归模型的定义见：[lab2 week2](work2/C1_W2_Lab02_Multiple_Variable_Soln.ipynb)
 
 
-### 1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)
+#### 1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)
 **特征缩放：**当有不同的特征数据，且他们的取值范围非常不同时，可能会导致梯度下降运行缓慢。此时重新缩放不同的特征（对数据做类似于归一化处理），可以使数据分布较为均匀，让梯度下降的效率更高。
 
 ![](images/15.png)
@@ -129,7 +129,7 @@ f = np.dot(w,x) + b
 
 ![](images/17.png)
 
-### 1.1.7 多项式回归
+#### 1.1.7 多项式回归
 
 Scikit-learn：一个广泛使用的开源机器学习库
 多项式回归在实验室中的实现：[lab4 week2](work2/C1_W2_Lab04_FeatEng_PolyReg_Soln.ipynb)
@@ -139,14 +139,14 @@ Scikit-learn：一个广泛使用的开源机器学习库
 ![](images/2.png)
 只有有限情况的输出类型，但可有多个输入.
 
-### **<font size=4>1.3 回归与分类的区别:</font>**
+### <font size=4>1.3 回归与分类的区别:</font>
 
 主要区别在于可能输出数据种类的多少，回归输出数据有无限种，分类只有有限种。
 
 ![](images/3.png)
 ![](images/6.png)
 ***
-## **2.无监督学习(Unsupervised learning)**
+## **2. 无监督学习(Unsupervised learning)**
 
 给定的数据与任何输出标签y无关
 
@@ -155,19 +155,19 @@ Scikit-learn：一个广泛使用的开源机器学习库
 几种无监督学习算法：
 ![](images/5.png)
 
-### **<font size=4>2.1聚类 Clustering</font>**
+### **<font size=4>2.1 聚类 Clustering</font>**
 
   获取没有标签的数据并尝试将它们自动分组到集群中。
 
-### **<font size=4> 2.2异常检测 Anomaly detection</font>**
+### **<font size=4>2.2 异常检测 Anomaly detection</font>**
 
-### **<font size=4>2.3降维 Dimensionality reduction</font>**
+### **<font size=4>2.3 降维 Dimensionality reduction</font>**
 
 
 `12.17` 
 > I just like the feeling that I'm better than ever before.
 
 关于github推送，如果一次失败了的话，可以尝试解决办法有：
-1. 关掉工作区重来
+1. 关掉**工作区**重来
 2. 打开代理
 3. 在最上面`源代码管理储存库`中选择`推送`
