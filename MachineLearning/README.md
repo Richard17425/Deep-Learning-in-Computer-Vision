@@ -12,6 +12,7 @@
       - [1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)](#116-特征缩放feature-scaling与特征工程feature-engineering)
       - [1.1.7 多项式回归](#117-多项式回归)
     - [**1.2 分类 Classification**](#12-分类-classification)
+      - [**1.2.1 逻辑回归(Logistic regression)**](#121-逻辑回归logistic-regression)
     - [1.3 回归与分类的区别:](#13-回归与分类的区别)
   - [**2. 无监督学习(Unsupervised learning)**](#2-无监督学习unsupervised-learning)
     - [**2.1 聚类 Clustering**](#21-聚类-clustering)
@@ -121,11 +122,11 @@ f = np.dot(w,x) + b
 
 
 #### 1.1.6 特征缩放(Feature scaling)与特征工程(Feature engineering)
-**特征缩放：**当有不同的特征数据，且他们的取值范围非常不同时，可能会导致梯度下降运行缓慢。此时重新缩放不同的特征（对数据做类似于归一化处理），可以使数据分布较为均匀，让梯度下降的效率更高。
+**特征缩放**：当有不同的特征数据，且他们的取值范围非常不同时，可能会导致梯度下降运行缓慢。此时重新缩放不同的特征（对数据做类似于归一化处理），可以使数据分布较为均匀，让梯度下降的效率更高。
 
 ![](images/15.png)
 
-**特征工程：**通过你个人对问题的理解以及直觉，对原始的数据进行相关变换得到新的数据，再进行机器学习。
+**特征工程**：通过你个人对问题的理解以及直觉，对原始的数据进行相关变换得到新的数据，再进行机器学习。
 
 ![](images/17.png)
 
@@ -138,6 +139,33 @@ Scikit-learn：一个广泛使用的开源机器学习库
 
 ![](images/2.png)
 只有有限情况的输出类型，但可有多个输入.
+
+#### **1.2.1 逻辑回归(Logistic regression)**
+ $$f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b)$$
+![](images/18.png) ![](images/19.png)
+
+逻辑回归中使用的Sigmod函数(用g(z)： $g(z) = \frac{1}{1+e^{-z}}$ 来表示，其中z=wx+b或者其他训练数据)，能够对输出仅是0和1的情况更好地拟合。实验室见[lab2 week3](work3/C1_W3_Lab02_Sigmoid_function_Soln.ipynb)
+
+代码中对sigmoid()函数定义如下：
+```python
+def sigmoid(z):
+    """
+    Compute the sigmoid of z
+
+    Args:
+        z (ndarray): A scalar, numpy array of any size.
+
+    Returns:
+        g (ndarray): sigmoid(z), with the same shape as z
+         
+    """
+
+    g = 1/(1+np.exp(-z))
+   
+    return g
+```
+**决策边界(Decision boundary)**
+[lab3 week3](work3/C1_W3_Lab03_Decision_Boundary_Soln.ipynb)
 
 ### <font size=4>1.3 回归与分类的区别:</font>
 
