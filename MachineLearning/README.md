@@ -13,6 +13,8 @@
       - [1.1.7 多项式回归](#117-多项式回归)
     - [**1.2 分类 Classification**](#12-分类-classification)
       - [**1.2.1 逻辑回归(Logistic regression)**](#121-逻辑回归logistic-regression)
+      - [**1.2.2 逻辑回归损失函数(Logistic loss function)**](#122-逻辑回归损失函数logistic-loss-function)
+      - [**1.2.3 逻辑回归的梯度下降法(Graduent descent for logistic regression)**](#123-逻辑回归的梯度下降法graduent-descent-for-logistic-regression)
     - [1.3 回归与分类的区别:](#13-回归与分类的区别)
   - [**2. 无监督学习(Unsupervised learning)**](#2-无监督学习unsupervised-learning)
     - [**2.1 聚类 Clustering**](#21-聚类-clustering)
@@ -144,7 +146,9 @@ Scikit-learn：一个广泛使用的开源机器学习库
  $$f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b)$$
 ![](images/18.png) ![](images/19.png)
 
-逻辑回归中使用的Sigmod函数(用g(z)： $g(z) = \frac{1}{1+e^{-z}}$ 来表示，其中z=wx+b或者其他训练数据)，能够对输出仅是0和1的情况更好地拟合。实验室见[lab2 week3](work3/C1_W3_Lab02_Sigmoid_function_Soln.ipynb)
+逻辑回归与线性回归根本的不同还是在于使用函数f<sub>w,b</sub>(x)的不同：逻辑回归中使用的Sigmod函数(用g(z)： $g(z) = \frac{1}{1+e^{-z}}$ 来表示，其中z=wx+b或者其他训练数据)，能够对输出仅是0和1的情况更好地拟合。实验室见[lab2 week3](work3/C1_W3_Lab02_Sigmoid_function_Soln.ipynb)
+
+![](images/22.png)
 
 代码中对sigmoid()函数定义如下：
 ```python
@@ -165,7 +169,34 @@ def sigmoid(z):
     return g
 ```
 **决策边界(Decision boundary)**
-[lab3 week3](work3/C1_W3_Lab03_Decision_Boundary_Soln.ipynb)
+
+决策边界相当于是  $f_{\mathbf{w},b}(\mathbf{x}) = g(\mathbf{w} \cdot \mathbf{x} + b)$
+中 $\mathbf{z}=\mathbf{w} \cdot \mathbf{x} + b=0$
+
+实验室中的代码实现：[lab3 week3](work3/C1_W3_Lab03_Decision_Boundary_Soln.ipynb)
+
+#### **1.2.2 逻辑回归损失函数(Logistic loss function)**
+
+线性回归中的代价函数在逻辑回归中无法适用，所以要构成一个新的成本函数。
+![](images/20.png)
+![](images/21.png)
+
+实验室见：[lab4 week3](work3/C1_W3_Lab04_LogisticLoss_Soln.ipynb),有比较详细的讲述。
+
+The loss function above can be rewritten to be easier to implement.
+
+$$loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) = (-y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right)$$
+
+#### **1.2.3 逻辑回归的梯度下降法(Graduent descent for logistic regression)**
+
+成本函数即为代价函数之和取平均：
+
+$$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) \right] \tag{1}$$
+
+成本函数相关代码见实验室：[lab5 week3](work3/C1_W3_Lab05_Cost_Function_Soln.ipynb)
+
+其他的在线性回归中使用的关于梯度下降的方法例如**矢量化**实现和**特征缩放** 等方法在逻辑回归中同样适用。实验室中关于逻辑回归的梯度下降法有介绍：[lab6 week3](work3/C1_W3_Lab06_Gradient_Descent_Soln.ipynb)
+
 
 ### <font size=4>1.3 回归与分类的区别:</font>
 
@@ -192,10 +223,11 @@ def sigmoid(z):
 ### **<font size=4>2.3 降维 Dimensionality reduction</font>**
 
 
-`12.17` 
-> I just like the feeling that I'm better than ever before.
-
 关于github推送，如果一次失败了的话，可以尝试解决办法有：
 1. 关掉**工作区**重来
 2. 打开代理
 3. 在最上面`源代码管理储存库`中选择`推送`
+
+
+`12.17` 
+> I just like the feeling that I'm better than ever before.
