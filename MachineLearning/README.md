@@ -16,6 +16,8 @@
       - [**1.2.2 逻辑回归损失函数(Logistic loss function)**](#122-逻辑回归损失函数logistic-loss-function)
       - [**1.2.3 逻辑回归的梯度下降法(Graduent descent for logistic regression)**](#123-逻辑回归的梯度下降法graduent-descent-for-logistic-regression)
     - [1.3 回归与分类的区别:](#13-回归与分类的区别)
+    - [**1.4 过拟合问题与正则化**](#14-过拟合问题与正则化)
+      - [1.4.1 欠拟合(Underfitting)与过拟合(Overfitting)](#141-欠拟合underfitting与过拟合overfitting)
   - [**2. 无监督学习(Unsupervised learning)**](#2-无监督学习unsupervised-learning)
     - [**2.1 聚类 Clustering**](#21-聚类-clustering)
     - [**2.2 异常检测 Anomaly detection**](#22-异常检测-anomaly-detection)
@@ -204,6 +206,26 @@ $$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\
 
 ![](images/3.png)
 ![](images/6.png)
+
+### <font size=4>**1.4 过拟合问题与正则化**</font>
+
+#### 1.4.1 欠拟合(Underfitting)与过拟合(Overfitting)
+>线性回归中的欠拟合和过拟合：
+![](images/23.png)
+
+>逻辑回归中的欠拟合与过拟合
+![](images/24.png)
+
+欠拟合存在高偏差(high bias)，而过拟合存在高方差(high variance)。
+机器学习的目标是找到一个既不过拟合也不欠拟合的模型。
+解决过拟合的方法有：
+- 1. 获得更多的训练数据：缺点是有的时候数据数量有限或者无法获得更多的数据。
+- 2. **特征选择**：选择与预测结果最相关的一组特征值(原特征的子集)进行训练，减少使用的多项式特征(x<sub>(i)</sub>)的数量。但是这个方法的缺点是会丢失某些信息。
+- 3. **正则化(Regularization)**：减小特征参数w<sub>(j)</sub>的值来实现保留所有特征的同时防止多余的特征产生过大的影响(过拟合)。
+
+>过拟合的实验室演示见：[lab8 week3](work3/C1_W3_Lab08_Overfitting_Soln.ipynb)
+
+
 ***
 ## **2. 无监督学习(Unsupervised learning)**
 
@@ -212,6 +234,7 @@ $$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\
 ![](images/4.png)
 
 几种无监督学习算法：
+
 ![](images/5.png)
 
 ### **<font size=4>2.1 聚类 Clustering</font>**
