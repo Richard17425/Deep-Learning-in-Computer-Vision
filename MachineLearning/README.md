@@ -60,8 +60,9 @@
 
 实验室中的代码实现见：[Lab04](work/C1_W1_Lab04_Cost_function_Soln.ipynb)
 
-回归算法思路如下：
+>回归算法思路如下：
 ![](images/7.png)
+
  Python 实现拟合以及训练过程详解见实验室：[lab03](work/C1_W1_Lab03_Course_Preview_Soln.ipynb)
 
 ```markdown
@@ -75,7 +76,7 @@
 
 $\alpha$:学习率learning rate，控制学习时w和b的步长。学习率选择的不同会影响成本函数的收敛与否，直接关系到梯度下降法能否得到有效解,$\alpha$ 过大会导致发散，过小会增加迭代次数，影响学习效率。
 
-学习率的设置:
+>**学习率的设置**:
 ![](images/16.png)
 
 实验室见: [lab3 week2](work2/C1_W2_Lab03_Feature_Scaling_and_Learning_Rate_Soln.ipynb)
@@ -109,9 +110,8 @@ f = np.dot(w,x) + b
 ```
 ![](images/11.png)
 
-这就相当于是数学中的点乘运算，且采用numpy中的dot运算可以大幅提高运算效率，两种代码运行原理如下所示：
-
-![](images/12.png)
+>这就相当于是数学中的点乘运算，且采用numpy中的dot运算可以大幅提高运算效率，两种代码运行原理如下所示：
+> ![](images/12.png)
 
 具体的对比验证在week2的实验室中,的3.4.7可以找到：[lab1 week2](work2/C1_W2_Lab01_Python_Numpy_Vectorization_Soln.ipynb)
 
@@ -146,7 +146,7 @@ Scikit-learn：一个广泛使用的开源机器学习库
 
 #### **1.2.1 逻辑回归(Logistic regression)**
  $$f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = g(\mathbf{w} \cdot \mathbf{x}^{(i)} + b)$$
-![](images/18.png) ![](images/19.png)
+> ![](images/18.png) ![](images/19.png)
 
 逻辑回归与线性回归根本的不同还是在于使用函数f<sub>w,b</sub>(x)的不同：逻辑回归中使用的Sigmod函数(用g(z)： $g(z) = \frac{1}{1+e^{-z}}$ 来表示，其中z=wx+b或者其他训练数据)，能够对输出仅是0和1的情况更好地拟合。实验室见[lab2 week3](work3/C1_W3_Lab02_Sigmoid_function_Soln.ipynb)
 
@@ -193,7 +193,7 @@ $$loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) = (-y^{(i)} \log\left(f_{\ma
 
 成本函数即为代价函数之和取平均：
 
-$$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) \right] \tag{1}$$
+$$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) \right] $$
 
 成本函数相关代码见实验室：[lab5 week3](work3/C1_W3_Lab05_Cost_Function_Soln.ipynb)
 
@@ -204,8 +204,8 @@ $$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\
 
 主要区别在于可能输出数据种类的多少，回归输出数据有无限种，分类只有有限种。
 
-![](images/3.png)
-![](images/6.png)
+
+> ![](images/3.png) ![](images/6.png)
 
 ### <font size=4>**1.4 过拟合问题与正则化**</font>
 
@@ -219,9 +219,9 @@ $$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\
 欠拟合存在高偏差(high bias)，而过拟合存在高方差(high variance)。
 机器学习的目标是找到一个既不过拟合也不欠拟合的模型。
 解决过拟合的方法有：
-- 1. 获得更多的训练数据：缺点是有的时候数据数量有限或者无法获得更多的数据。
-- 2. **特征选择**：选择与预测结果最相关的一组特征值(原特征的子集)进行训练，减少使用的多项式特征(x<sub>(i)</sub>)的数量。但是这个方法的缺点是会丢失某些信息。
-- 3. **正则化(Regularization)**：减小特征参数w<sub>(j)</sub>的值来实现保留所有特征的同时防止多余的特征产生过大的影响(过拟合)。
+1. 获得更多的训练数据：缺点是有的时候数据数量有限或者无法获得更多的数据。
+2. **特征选择**：选择与预测结果最相关的一组特征值(原特征的子集)进行训练，减少使用的多项式特征(x<sub>(i)</sub>)的数量。但是这个方法的缺点是会丢失某些信息。
+3. **正则化(Regularization)**：减小特征参数w<sub>(j)</sub>的值来实现保留所有特征的同时防止多余的特征产生过大的影响(过拟合)。
 
 >过拟合的实验室演示见：[lab8 week3](work3/C1_W3_Lab08_Overfitting_Soln.ipynb)
 
