@@ -18,6 +18,7 @@
     - [1.3 回归与分类的区别:](#13-回归与分类的区别)
     - [**1.4 过拟合问题与正则化**](#14-过拟合问题与正则化)
       - [1.4.1 欠拟合(Underfitting)与过拟合(Overfitting)](#141-欠拟合underfitting与过拟合overfitting)
+      - [**1.4.2 正则化 (Regularization)**](#142-正则化-regularization)
   - [**2. 无监督学习(Unsupervised learning)**](#2-无监督学习unsupervised-learning)
     - [**2.1 聚类 Clustering**](#21-聚类-clustering)
     - [**2.2 异常检测 Anomaly detection**](#22-异常检测-anomaly-detection)
@@ -225,6 +226,25 @@ $$ J(\mathbf{w},b) = \frac{1}{m} \sum_{i=0}^{m-1} \left[ loss(f_{\mathbf{w},b}(\
 
 >过拟合的实验室演示见：[lab8 week3](work3/C1_W3_Lab08_Overfitting_Soln.ipynb)
 
+
+#### **1.4.2 正则化 (Regularization)**
+***
+**1.正则化在线性回归中的应用**：
+
+The equation for the cost function regularized linear regression is:
+
+$$J(\mathbf{w},b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{\mathbf{w},b}(\mathbf{x}^{(i)}) - y^{(i)})^2  + \frac{\lambda}{2m}  \sum_{j=0}^{n-1} w_j^2$$ 
+
+$\lambda$ :正则化参数(Regularization parameter)($\lambda>0$)
+
+>正则化在每次迭代中所做的就是将系数w乘以一个比1略小的数字从而保证w有一定的收缩的作用。 
+![](images/25.png)
+
+**2.正则化在逻辑回归中的应用**：
+
+For regularized **logistic** regression, the cost function is of the form
+
+$$J(\mathbf{w},b) = \frac{1}{m}  \sum_{i=0}^{m-1} \left[ -y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) \right] + \frac{\lambda}{2m}  \sum_{j=0}^{n-1} w_j^2$$
 
 ***
 ## **2. 无监督学习(Unsupervised learning)**
