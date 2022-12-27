@@ -32,3 +32,26 @@
 >要注意在比较复杂的神经元之间计算时角标和矢量
 ![](images/4.png)
 ![](images/5.png)
+
+## 前向传播算法(Forward propagation algorithm)
+
+![](images/6.png)
+
+要传播神经元的激活值，计算是从左往右进行，
+
+## TensorFlow
+- 示例1 ![](images/7.png)
+
+- 示例2![](images/8.png)
+
+> - Dense是神经网络一种名字
+> - unit参数是该层神经元的个数
+> - 在TensorFlow中矩阵(张量tensor)的表示用 `np.array([[ ]])`两个大括号来表示
+![](images/9.png)
+
+
+TensorFlow中的`Sequential()`函数可以将建立的两个神经层串联在一起
+
+![](images/10.png)
+
+![](images/11.png)
