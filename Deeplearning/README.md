@@ -49,7 +49,7 @@
 > - 在TensorFlow中矩阵(张量tensor)的表示用 `np.array([[ ]])`两个大括号来表示
 ![](images/9.png)
 
-TensorFlow中的`Sequential()`函数可以将建立的两个神经层串联在一起
+TensorFlow中的`Sequential()`函数可以将建立的两个神经层串联在一起，用TensorFlow可以大大简化代码
 
 ![](images/10.png)  
 ![](images/11.png)  
