@@ -78,7 +78,7 @@ def dense(a_in,W,b,g)∶
 def sequential(x):
   a1 = dense(x，W1,b1)
   a2 = dense(a1, W2，b2)
-  a3 = dense(a2，W3，b3)
+  a3 = dense(a2，W3，b3) 
   a4 = dense( a3,W4，b4)
   f_x = a4
 return f_x
@@ -89,3 +89,4 @@ return f_x
 
 关于向量、矩阵点乘知识的复习
 ![](images/14.png)   
+![](images/15.png)  
