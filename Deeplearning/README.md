@@ -4,6 +4,11 @@
 学习视频我看的是：[2022吴恩达机器学习Deeplearning.ai课程](https://www.bilibili.com/video/BV1Pa411X76s/?p=43&spm_id_from=pageDriver&vd_source=72cbed57f84134f653cd0ebd0e4e2cff)
 
 ***
+## AI的分类
+![](images/12.png)  
+ANI：简单的AI系统，一般只做一件事或一狭隘的任务，有时能达到非常好的效果，比如智能音箱，自动驾驶或者网页搜索
+
+AGI：能够完成一般人能做的所有事情的AI系统
 
 神经网络术语：
 ---
@@ -55,3 +60,32 @@ TensorFlow中的`Sequential()`函数可以将建立的两个神经层串联在�
 ![](images/11.png)  
 
 对应的实验室为：[TensorFlow](Advanced_Learning_Algorithms/week1/5.TensorFlow%20implementation/C2_W1_Lab02_CoffeeRoasting_TF.ipynb)
+
+**关于神经网络一些比较核心代码的思路**： 
+在NumPy中实现前向传播时dense()函数的写法
+```python
+def dense(a_in,W,b,g)∶
+  units = W.shape[1]
+  a_out = np.zeros(units)
+  for j in range(units):
+    w= W[:,j]    #提取矩阵的第j列，矩阵用大写字母表示，小写表示向量或标量
+    z = np.dot(w,a_in) + b[j]
+    a_out[j] =g(z)
+  return a_out
+```
+一个四层神经网络的写法： 
+```python
+def sequential(x):
+  a1 = dense(x，W1,b1)
+  a2 = dense(a1, W2，b2)
+  a3 = dense(a2，W3，b3)
+  a4 = dense( a3,W4，b4)
+  f_x = a4
+return f_x
+```
+## 向量化(vectorized implementation)神经网络前向传播(forward prop in a neural network)的代码实现
+
+![](images/13.png)  
+
+关于向量、矩阵点乘知识的复习
+![](images/14.png)   
