@@ -3,6 +3,11 @@
 
 学习视频我看的是：[2022吴恩达机器学习Deeplearning.ai课程](https://www.bilibili.com/video/BV1Pa411X76s/?p=43&spm_id_from=pageDriver&vd_source=72cbed57f84134f653cd0ebd0e4e2cff)
 
+[toc](#深度学习笔记)
+- [**深度学习笔记**](#深度学习笔记)
+  - [ai的分类](#ai的分类)
+  - [神经网络用于面部识别](#神经网络用于面部识别)
+
 ***
 ## AI的分类
 ![](images/12.png)  
@@ -36,8 +41,8 @@ AGI：能够完成一般人能做的所有事情的AI系统
 
 >要注意在比较复杂的神经元之间计算时角标和矢量
 ![](images/4.png)
-![](images/5.png)
-
+![](images/5.png)  
+**上角标是神经网络的层数，下角标是该层神经元的序号**
 ## 前向传播算法(Forward propagation algorithm)
 
 ![](images/6.png)
@@ -90,3 +95,34 @@ return f_x
 关于向量、矩阵点乘知识的复习
 ![](images/14.png)   
 ![](images/15.png)  
+
+---
+代码中实现点乘
+
+![](images/16.png)  
+
+`Z = np.matmul(AT,W)`
+> AT @ W 的写法中@相当于是调用matmul函数，但是一般不这么写，知道即可
+
+```python
+AT = np. array ([[200，17]])  #在TensorFlow中XT称为AT
+W = np. array([[1,-3，5],
+             [-2，4，-6]])
+b = np.array([[-1，1，2]])
+
+def dense(AT,W,b,g):   #此处AT一般称为a_in
+  z = np.matmul(AT,w) + b
+  a_out = g(z)
+  return a_out   #[[1,0,1]] 
+```
+
+## 用TensorFlow训练神经网络(感知层)
+ 
+![](images/17.png)  
+>代码流程
+>1. 建立逻辑回归模型，在给定输入特征x，参数W和b的情况下，告诉TensorFlow如何计算推断
+>2. 编译模型，指定损失函数loss function(此处用到的是稀疏分类交叉熵 BinaryCrossentropy)和成本函数cost function
+>3. 训练模型,用具体的梯度下降算法来最小化成本函数J(W,b),这里调用的fit函数中实现了反向传播算法(计算梯度下降中的偏导数项)
+> 
+>![](images/18.png)  
+
