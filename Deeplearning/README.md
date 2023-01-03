@@ -3,10 +3,22 @@
 
 学习视频我看的是：[2022吴恩达机器学习Deeplearning.ai课程](https://www.bilibili.com/video/BV1Pa411X76s/?p=43&spm_id_from=pageDriver&vd_source=72cbed57f84134f653cd0ebd0e4e2cff)
 
-
-- [**深度学习笔记**](#深度学习笔记)
-  - [ai的分类](#ai的分类)
+- [深度学习笔记](#深度学习笔记)
+  - [AI的分类](#ai的分类)
+  - [神经网络术语：](#神经网络术语)
   - [神经网络用于面部识别](#神经网络用于面部识别)
+  - [神经网络中的网络层](#神经网络中的网络层)
+  - [前向传播算法(Forward propagation algorithm)](#前向传播算法forward-propagation-algorithm)
+  - [TensorFlow](#tensorflow)
+  - [向量化神经网络前向传播的代码实现](#向量化神经网络前向传播的代码实现)
+  - [用TensorFlow训练神经网络(感知层)](#用tensorflow训练神经网络感知层)
+  - [其他类型的激活函数](#其他类型的激活函数)
+    - [**输出层**激活函数的选择](#输出层激活函数的选择)
+    - [**隐藏层**激活函数的选择](#隐藏层激活函数的选择)
+  - [**多分类问题**(Multi-class classification)](#多分类问题multi-class-classification)
+    - [**Softmax算法**：针对多分类环境的二元分类算法](#softmax算法针对多分类环境的二元分类算法)
+    - [**Softmax激活函数**](#softmax激活函数)
+
 
 ***
 ## AI的分类
@@ -88,8 +100,9 @@ def sequential(x):
   f_x = a4
 return f_x
 ```
-## 向量化(vectorized implementation)神经网络前向传播(forward prop in a neural network)的代码实现
+## 向量化神经网络前向传播的代码实现
 
+**向量化(vectorized implementation)神经网络前向传播(forward prop in a neural network)的代码实现**
 ![](images/13.png)  
 
 关于向量、矩阵点乘知识的复习
@@ -126,6 +139,7 @@ def dense(AT,W,b,g):   #此处AT一般称为a_in
 > 
 >![](images/18.png)  
 
+>逻辑回归问题中最后一层选用线性回归函数并改变loss函数的设置可以提高计算精度。具体原因和方法见[softmax激活函数](#softmax激活函数)
 ## 其他类型的激活函数
 ![](images/20.png) 
 
@@ -149,3 +163,71 @@ def dense(AT,W,b,g):   #此处AT一般称为a_in
 **ReLU函数**如今在隐藏层中应用最广泛，一个是因为它的**计算速度更快**，只需要计算最大值，第二个也是最主要的原因是ReLU函数只有左边**一边是(完全)平坦的**，而sigmoid函数两边都是平坦的，这就导致后者在运用梯度下降算法训练神经网络时会很缓慢(梯度下降算法优化成本函数J(W,b)并不会优化激活函数)，减小了学习速度。
 
 **不要在神经网络的隐藏层中使用线性激活函数**，因为线性函数在叠加之后任可以表示为线性函数的形式，意味着模型并未进行本质的改变，如果全部使用线性函数，这个模型会计算出一个完全等价于线性回归的值。
+
+## **多分类问题**(Multi-class classification)
+输出值y的种类大于2但仍是有限的离散值，而不是任何数字
+
+### **Softmax算法**：针对多分类环境的二元分类算法
+
+![](images/23.png)  
+
+Softmax算法成本函数的形式(密集/稀疏分类交叉熵损失函数)：
+![](images/24.png)  
+`loss=BinaryCrossEntropy()`
+实验室见：[lab_week2](Advanced_Learning_Algorithms/week2/5.Multiclass%20Classification/C2_W2_Multiclass_TF.ipynb)
+
+### **Softmax激活函数**
+因为在多分类问题中，概率值 a<sub>i</sub> 与 z<sub>1</sub>，z<sub>2</sub> ... z<sub>n</sub>均有关，每一个激活值a都取决于z的值，所以这种情况下使用softmax激活函数计算。
+
+`activation='softmax'`
+
+稀疏分类(sparse categorical)指的是，y仍被分成不同的类别，所以仍是分类问题，稀疏表示的是输出量y只会是给定标签类别中的一个
+
+在代码中坚持用显式把中间量计算出来会导致数据在存储过程中存在数值舍入的末位误差。改进方法是输出层用线性激活函数，并在损失函数中设置`from_logits=True` 。这样TensorFlow会重新整理这些项，避免出现一些特别小或者特别大的中间量，从而使计算更精确。
+
+![](images/25.png)  
+
+**改进后的代码：**
+
+```python
+#model
+import tensorflow as tf
+from tensorflow.keras import sequential 
+from tensorflow.keras.layers import Dense
+model = sequential([
+Dense (units=25,activation='relu')
+Dense (units=15, activation='relu')
+Dense (units=10, activation='linear')])  #输出层用线性激活函数
+#loss
+from tensorflow.keras.losses import SparseCategoricalCrossentropy
+model.compile (.. . ,loss=SparseCategoricalCrossentropy (from_logits=True) )  #注意在此处的设置
+#fit
+model.fit (X,Y,epochs=100)
+#predict
+logits = model (X)  #此处输出的不是概率值a，而是z1到zn
+f_x = tf.nn.softmax (logits)
+
+```
+
+**逻辑回归神经网络中的改进**
+```python
+#model
+model = Sequential (
+  [
+      Dense (units=25, activation='sigmoid ')
+      Dense(units=15,activation='sigmoid ')
+      Dense (units=1, activation= 'linear ') 
+  ]   
+  )
+from tensorflow.keras.losses import BinaryCrossentropy
+#loss
+model.compile (..., Binarycrossentropy (from_logits=True))
+model.fit(x,Y,epochs=100)
+#fit
+logit = model(X)
+#predict
+f_x = tf.nn.sigmoid(logit)
+
+```
+
+实验室参考：[lab2_week2](Advanced_Learning_Algorithms/week2/5.Multiclass%20Classification/C2_W2_SoftMax-Copy1.ipynb)
