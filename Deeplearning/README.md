@@ -18,6 +18,8 @@
   - [**多分类问题**(Multi-class classification)](#多分类问题multi-class-classification)
     - [**Softmax算法**：针对多分类环境的二元分类算法](#softmax算法针对多分类环境的二元分类算法)
     - [**Softmax激活函数**](#softmax激活函数)
+  - [多标签分类问题(Multi-label classification)](#多标签分类问题multi-label-classification)
+  - [高级优化算法Adam(Adaptive Moment estimation)](#高级优化算法adamadaptive-moment-estimation)
 
 
 ***
@@ -231,3 +233,37 @@ f_x = tf.nn.sigmoid(logit)
 ```
 
 实验室参考：[lab2_week2](Advanced_Learning_Algorithms/week2/5.Multiclass%20Classification/C2_W2_SoftMax-Copy1.ipynb)
+
+## 多标签分类问题(Multi-label classification)
+![](images/26.png)  
+输出的y是一个**向量**而不再是一个单一的值
+
+
+ ## 高级优化算法Adam(Adaptive Moment estimation)
+
+Adam算法中每一个参数都用的不同的学习率
+![](images/27.png) 
+
+Adam算法优化梯度下降算法的思路：
+![](images/28.png) 
+
+
+在代码中实现Adam算法
+
+
+```python
+#model
+model = sequential( [
+tf.keras.layers. Dense (units=25,activation='sigmoid ')
+tf.keras.layers. Dense (units=15,activation='sigmoid')
+tf.keras.layers.Dense (units=10,activation='linear')
+] )
+#compile
+#指定使用的优化器，指定全局学习率
+model.compile (optimizer=tf.keras.optimizers.Adam(learning_rate=1e-3),  
+loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True))
+#fit
+model.fit (x,r , epochs=100)
+
+```
+
