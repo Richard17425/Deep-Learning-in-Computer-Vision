@@ -20,6 +20,7 @@
     - [**Softmax激活函数**](#softmax激活函数)
   - [多标签分类问题(Multi-label classification)](#多标签分类问题multi-label-classification)
   - [高级优化算法Adam(Adaptive Moment estimation)](#高级优化算法adamadaptive-moment-estimation)
+  - [卷积层(Convolutional Layer)](#卷积层convolutional-layer)
 
 
 ***
@@ -266,4 +267,12 @@ loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True))
 model.fit (x,r , epochs=100)
 
 ```
+## 卷积层(Convolutional Layer)
 
+不同于全连接层，卷积层每个神经元只读取前一层的部分输入值，这样设置的优点是：
+1. 计算速度更快
+2. 需要的训练数据更少，也不容易过度拟合
+
+如果在神经网络中有多个卷积层，这样的神经网络有时候也叫做**卷积神经网络(Convolutional Neural Network)**
+
+![](images/29.png)  
