@@ -23,6 +23,9 @@
     - [**2.1 聚类 Clustering**](#21-聚类-clustering)
     - [**2.2 异常检测 Anomaly detection**](#22-异常检测-anomaly-detection)
     - [**2.3 降维 Dimensionality reduction**](#23-降维-dimensionality-reduction)
+  - [**3.改进模型**](#3改进模型)
+    - [3.1 对训练结果进行评估](#31-对训练结果进行评估)
+    - [3.2 **交叉验证集**(Cross validation set)](#32-交叉验证集cross-validation-set)
 
 
 
@@ -266,6 +269,72 @@ $$J(\mathbf{w},b) = \frac{1}{m}  \sum_{i=0}^{m-1} \left[ -y^{(i)} \log\left(f_{\
 ### **<font size=4>2.3 降维 Dimensionality reduction</font>**
 
 
+## **3.改进模型**
+1. 获得更多的训练数据
+2. 用更小的特征集
+3. 添加新的特征
+4. 增加现有特征的多项式组合
+5. 减小正则化参数 $\lambda$
+6. 增大正则化参数 $\lambda$
+
+![](images/26.png)
+
+### 3.1 对训练结果进行评估
+
+**带有误差代价平方的回归(Regression with squared error cost)**
+
+将原始样本数据分成两份，一份用于训练，另一份用来测试模型，通过衡量J_test和J_train，可以衡量模型在测试集和训练集上的表现.
+
+>将原始样本数据分成几份(训练集，交叉验证集，测试集)：
+
+| data             | % of total | Description |
+|------------------|:----------:|:---------|
+| training         | 60         | Data used to tune model parameters $w$ and $b$ in training or fitting |
+| cross-validation | 20         | Data used to tune other model parameters like degree of polynomial, regularization or the architecture of a neural network.|
+| test             | 20         | Data used to test the model after tuning to gauge performance on new data |
+
+
+![](images/27.png)
+
+测试误差的计算式：
+> $$ J_\text{test}(\mathbf{w},b) = 
+>            \frac{1}{2m_\text{test}}\sum_{i=0}^{m_\text{test}-1} ( f_{\mathbf{w},b}(\mathbf{x}^{(i)}_\text{test}) - y^{(i)}_\text{test} )^2 $$  
+
+
+![](images/28.png)
+
+
+**带有误差代价平方的分类模型**  
+![](images/29.png)
+
+实验室见deep Learning文件夹中的 [lab3 week3](../Deeplearning/Advanced_Learning_Algorithms/week3/work/C2_W3_Assignment.ipynb)
+
+### 3.2 **交叉验证集**(Cross validation set) 
+>|| **选择合适的模型** :  
+>当J_test最小时选出多项式d，所以当使用这个d时J_test就会小，但要是在新的测试集上可能J又会大。  
+>训练集用来训练参数w和b，而测试集用来选择多项式模型（即参数d），训练集不能评估w和b的好坏，类似的测试集也不能用来评估参数d的好坏
+
+因此，单靠测试集和训练集无法准确地选出最合适的模型。
+
+**交叉验证集**是一个额外的数据集，用来检查或信用检查(trust check)不同模型的有效性和准确性。也被简称为验证集(validation set)或开发集(development/dev set)
+![](images/30.png)
+
+>训练误差，交叉验证误差和测试误差
+![](images/31.png)
+
+观察哪个模型具有最低的交叉验证错误
+
+>基于交叉验证误差的模型选择
+![](images/32.png)
+
+>用于神经网络模型选择
+![](images/33.png)
+
+>交叉验证误差用来选择模型的形式(多项式的形式或者神经网络的层数等)，训练误差用来确定模型的参数，泛化误差(generalization)的估计值用测试集来估计选择的模型的性能。  
+>相当于决定模型只看训练集和交叉验证集，不用测试集，并且测试集用在做完了这些决定之后，这样的好处可以确保没有不小心往测试集里添加内容，这样测试集就会变得很公平(因为你没有提前偷看‘考试答案’，没有用测试集做任何决定)，而不是对泛化误差过度乐观估计。
+
+
+***
 关于github推送，如果一次失败了的话，可以尝试解决办法有：
 1. 关掉**工作区**重来
 2. 打开代理
